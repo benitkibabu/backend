@@ -33,6 +33,23 @@ class DbUpdate{
 		/* $this->close(); */
 	}
 	
+	public function getCourses(){
+		$query = "SELECT * FROM course ORDER BY course_code DESC";
+		$con  = $this->connect();
+		$course = mysqli_query($con, $query);
+		if(mysqli_num_rows($course) > 0){
+			$rows = array();
+			while($row = mysqli_fetch_array($course,MYSQLI_ASSOC)){
+				$rows[] = $row;
+			}
+			return $rows;
+		}
+		else{
+			return false;
+		}
+		/* $this->close(); */
+	}
+	
 	public function getUpdate($id){
 		$query = "SELECT * FROM news WHERE id = $id";
 		$con  = $this->connect();

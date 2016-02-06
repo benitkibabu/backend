@@ -73,6 +73,22 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 			echo json_encode($res);
 		}
 	}
+	else if($tag == "getCourses"){
+		
+		$result = $db->getCourses();
+		
+		if($result != false){			
+			$list = array();
+			$res["error"] = FALSE;			
+			$res['result'] = $result;			
+			echo json_encode($res);			
+		}
+		else{
+			$res["error"] = TRUE;
+			$res["error_msg"] = "No Courses found";
+			echo json_encode($res);
+		}
+	}
 	else{
 		$response["error"] = TRUE;
 		$response["error_msg"] = "Unknown tag. Use a proper tag";

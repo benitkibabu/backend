@@ -6,7 +6,7 @@
     <div  id="result" class="mdl-cell mdl-cell--4-col container">
 
     </div>
-	<form class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp" action="../index.php" method="post">
+	<form class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp" action="api/index.php" method="post">
 	    <div class="mdl-card__title">
             <h2 class="mdl-card__title-text"> UPDATES:</h2>
         </div>

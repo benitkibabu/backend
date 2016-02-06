@@ -47,11 +47,11 @@
 <script>
 	$( document ).ready(function() {
 		var htm;
-		$.getJSON( "https://bendev.gear.host/api/index.php?tag=getCourse", function( data ) {
+		$.getJSON( "https://bendev.gear.host/api/index.php?tag=getCourses", function( data ) {
 			$.each(data.result, function (k, v) {					
 				//alert('index ' + v.title);
 				htm += '<div class="mdl-button mdl-js-button mdl-js-ripple-effect">'+
-						'<span>'+ v.name + '</span>'+			
+						'<span>'+ v.course_code + '</span>'+			
 						'</div>	'+
 						'<hr />';	
 			});
