@@ -34,7 +34,7 @@ class DbUpdate{
 	}
 	
 	public function getCourses(){
-		$query = "SELECT * FROM course ORDER BY course_code DESC";
+		$query = "SELECT * FROM course ORDER BY course_code";
 		$con  = $this->connect();
 		$course = mysqli_query($con, $query);
 		if(mysqli_num_rows($course) > 0){

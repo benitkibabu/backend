@@ -3,9 +3,6 @@
 <?php include('_drawer.php'); ?>
 
 <div class="container mdl-grid">
-    <div  id="result" class="mdl-cell mdl-cell--4-col container">
-
-    </div>
 	<form class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp" action="api/index.php" method="post">
 	    <div class="mdl-card__title">
             <h2 class="mdl-card__title-text"> UPDATES:</h2>
@@ -51,6 +48,10 @@
 		    </div>
         </div>
 	</form>
+	
+	<div  id="result" class="mdl-cell mdl-cell--4-col container">
+
+    </div>
 </div>
 
 
@@ -58,14 +59,14 @@
 
 <script>
 	$( document ).ready(function() {
-		var htm;
-		$.getJSON( "https://bendev.gear.host/api/index.php?tag=getUpdates", function( data ) {
+		var htm = "";
+		$.getJSON( "api/index.php?tag=getUpdates", function( data ) {
 			$.each(data.result, function (k, v) {					
 				//alert('index ' + v.title);
-				htm += '<div class="mdl-button mdl-js-button mdl-js-ripple-effect">'+
-						'<span>'+ v.title + '</span>'+			
-						'</div>	'+
-						'<hr />';	
+				htm += "<div class='mdl-button mdl-js-button mdl-js-ripple-effect'>"+
+						"<span>"+ v.title + "</span>"+			
+						"</div>	"+
+						"<hr />";	
 			});
 			$('#result').html(htm);							
 		});
