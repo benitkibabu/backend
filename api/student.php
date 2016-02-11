@@ -89,6 +89,14 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 			}
 		}	
 	}
+	else if($tag == "getStudents"){
+		$result = $db->getStudents();
+		if($result != false){
+			$res['error'] = false;
+			$res['result'] = $result;
+			echo json_encode($res);
+		}
+	}
 	else{
 		$response["error"] = TRUE;
 		$response["error_msg"] = "Unknown tag. Use a proper tag";
