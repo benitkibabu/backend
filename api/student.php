@@ -51,6 +51,20 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 			}
 		}		
 	}
+	else if($tag == "updateStatus"){
+		$student_no = $_POST['student_no'];
+		$status = $_POST['status'];
+		$res = $db->addStudent($student_no,$status);
+		if($res){
+			$res["error"] = FALSE;
+			$res["error_msg"] = "Student status updated";
+			echo json_encode($res);
+		}else{
+			$res["error"] = TRUE;
+			$res["error_msg"] = "Student status Not updated";
+			echo json_encode($res);
+		}
+	}
 	else{
 		$response["error"] = TRUE;
 		$response["error_msg"] = "Unknown tag. Use a proper tag";

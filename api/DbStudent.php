@@ -30,7 +30,7 @@ class DbStudent{
 		else{
 			return false;
 		}
-		/* $this->close(); */
+		$this->close();
 	}
 	
 	public function getDevices(){
@@ -46,6 +46,8 @@ class DbStudent{
 		else{
 			return false;
 		}
+		
+		$this->close();
 	}
 	
 	public function getStudent($id, $password){
@@ -62,11 +64,11 @@ class DbStudent{
 		else{
 			return false;
 		}
-		/* $this->close(); */
+		$this->close();
 	}
 	
 	public function addStudent($student_no, $email, $password, $reg_id, $course){
-		$query = "INSERT INTO student(student_no, student_email, password, reg_id, course) VALUES('$student_no','$email','$password','$reg_id','$course')";
+		$query = "INSERT INTO student(student_no, student_email, password, reg_id, course, status) VALUES('$student_no','$email','$password','$reg_id','$course', 'OFFLINE')";
 		$con  = $this->connect();
 		$res = mysqli_query($con, $query);
 		if(mysqli_num_rows($res)> 0){				
@@ -80,7 +82,21 @@ class DbStudent{
 		else{
 			return false;
 		}
-		/* $this->close(); */
+		
+		$this->close();
+	}
+	
+	public function uodateStatus($student_no, $status){
+		$query = "UPDATE student SET status = '$status' WHERE student_no = '$student_no'";
+		$con = $this->connect();
+		if(mysqli_query($con, $query)){
+			return true;
+		}else{
+			return false;
+		}
+		
+		$this->close();
+		
 	}
 	
 	public function addDevices($student_no, $device_id){
@@ -89,6 +105,8 @@ class DbStudent{
 		$result = $mysqli->query($query);
 		if($result){return true;}
 		else{return false;}
+		
+		$this->close();
 	}
 }
 ?>
