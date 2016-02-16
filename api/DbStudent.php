@@ -86,7 +86,7 @@ class DbStudent{
 		$this->close();
 	}
 	
-	public function uodateStatus($student_no, $status){
+	public function updateStatus($student_no, $status){
 		$query = "UPDATE student SET status = '$status' WHERE student_no = '$student_no'";
 		$con = $this->connect();
 		if(mysqli_query($con, $query)){

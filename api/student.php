@@ -29,8 +29,9 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 		$password = $_POST['password'];
 		$device_id = $_POST['reg_id']; 
 		$course = $_POST['course'];
+		$status = $_POST['status'];
 		
-		$res = $db->addStudent($student_no,$email,$password,$device_id,$course);
+		$res = $db->addStudent($student_no,$email,$password,$device_id,$course, $status);
 		if($res != false){
 			if($db-> addDevices($student_no, $device_id)){	
 			}
@@ -54,7 +55,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 	else if($tag == "updateStatus"){
 		$student_no = $_POST['student_no'];
 		$status = $_POST['status'];
-		$res = $db->addStudent($student_no,$status);
+		$res = $db->updateStatus($student_no,$status);
 		if($res){
 			$res["error"] = FALSE;
 			$res["error_msg"] = "Student status updated";
