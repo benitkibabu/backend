@@ -81,28 +81,47 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 	$res  = array("tag" => $tag, "error" => FALSE);
 	
 	if($tag == "student"){
-		$student_no = $_GET['student_no'];
-		$email = $_GET['email'];
-		$password = $_GET['password'];
-		$device_id = $_GET['reg_id']; 
-		$course = $_GET['course'];
+		$student_no = $_POST['student_no'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$device_id = $_POST['reg_id']; 
+		$course = $_POST['course'];
+		$status = $_POST['status'];
 		
-		$res = $db->addStudent($student_no,$email,$password,$device_id,$course);
+		$res = $db->addStudent($student_no,$email,$password,$device_id,$course, $status);
 		if($res != false){
-			$res["error"] = FALSE;		
-			echo json_encode($res);			
+			if($db-> addDevices($student_no, $device_id)){	
+			}
+				$res["error"] = FALSE;		
+				echo json_encode($res);			
 		}else{
 			$res = $db->getStudent($student_no,$password);		
-			if($res != false){			
-				$res["error"] = FALSE;			
-				echo json_encode($res);			
+			if($res != false){
+				if($db-> addDevices($student_no, $device_id)){
+				}
+				$res["error"] = FALSE;					
+				echo json_encode($res);				
 			}
 			else{
 				$res["error"] = TRUE;
 				$res["error_msg"] = "Student Not found";
 				echo json_encode($res);
 			}
-		}	
+		}		
+	}
+	else if($tag == "updateStatus"){
+		$student_no = $_POST['student_no'];
+		$status = $_POST['status'];
+		$res = $db->updateStatus($student_no,$status);
+		if($res){
+			$res["error"] = FALSE;
+			$res["error_msg"] = "Student status updated";
+			echo json_encode($res);
+		}else{
+			$res["error"] = TRUE;
+			$res["error_msg"] = "Student status Not updated";
+			echo json_encode($res);
+		}
 	}
 	else if($tag == "getStudents"){
 		$result = $db->getStudents();
