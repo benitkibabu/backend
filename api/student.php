@@ -88,7 +88,7 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 		$course = $_POST['course'];
 		$status = $_POST['status'];
 		
-		$res = $db->addStudent($student_no,$email,$password,$device_id,$course, $status);
+		$res = $db->addStudent($student_no,$email,$password,$device_id,$course,$status);
 		if($res != false){
 			if($db-> addDevices($student_no, $device_id)){	
 			}

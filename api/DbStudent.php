@@ -67,8 +67,9 @@ class DbStudent{
 		$this->close();
 	}
 	
-	public function addStudent($student_no, $email, $password, $reg_id, $course){
-		$query = "INSERT INTO student(student_no, student_email, password, reg_id, course, status) VALUES('$student_no','$email','$password','$reg_id','$course', 'OFFLINE')";
+	public function addStudent($student_no, $email, $password, $reg_id, $course, $status){
+		$query = "INSERT INTO student(student_no, student_email, password, reg_id, course, status, first_name, last_name) "
+				 +"VALUES('$student_no','$email','$password','$reg_id','$course', '$status', null, null)";
 		$con  = $this->connect();
 		$res = mysqli_query($con, $query);
 		if(mysqli_num_rows($res)> 0){				
