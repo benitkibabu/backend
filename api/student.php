@@ -82,6 +82,21 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 			echo json_encode($res);
 		}
 	}
+	else if($tag == "updateProfile"){
+		$student_no = $_POST['student_no'];
+		$firstName = $_POST['first_name'];
+		$lastName = $_POST['last_name'];
+		$stat = $db->updateProfile($student_no,$firstName, $lastName);
+		if($stat != false){
+			$res["error"] = FALSE;
+			$res["result"] = $stat;
+			echo json_encode($res);
+		}else{
+			$res["error"] = TRUE;
+			$res["error_msg"] = "Student status Not updated";
+			echo json_encode($res);
+		}
+	}
 	else{
 		$response["error"] = TRUE;
 		$response["error_msg"] = "Unknown tag. Use a proper tag";
@@ -98,11 +113,11 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 	
 	if($tag == "student"){
 		$student_no = $_POST['student_no'];
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		$device_id = $_POST['reg_id']; 
-		$course = $_POST['course'];
-		$status = $_POST['status'];
+		$email = $_GET['email'];
+		$password = $_GET['password'];
+		$device_id = $_GET['reg_id']; 
+		$course = $_GET['course'];
+		$status = $_GET['status'];
 		
 		$res = $db->addStudent($student_no,$email,$password,$device_id,$course,$status);
 		if($res != false){
@@ -142,17 +157,16 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 			}
 		}		
 	}
-	else if($tag == "updateStatus"){
-		$student_no = $_POST['student_no'];
-		$status = $_POST['status'];
-		$stat = $db->updateStatus($student_no,$status);
-		if($stat){
+	else if($tag == "getStudentInfo"){
+		$student_no = $_GET['student_no'];
+		$result = $db->getStudentById($student_no);
+		if($result != false){
 			$res["error"] = FALSE;
-			$res["error_msg"] = "Student status updated";
+			$res['result'] = $result;
 			echo json_encode($res);
 		}else{
 			$res["error"] = TRUE;
-			$res["error_msg"] = "Student status Not updated";
+			$res["error_msg"] = "Failed to retrieve student details";
 			echo json_encode($res);
 		}
 	}

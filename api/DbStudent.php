@@ -67,6 +67,23 @@ class DbStudent{
 		$this->close();
 	}
 	
+	public function getStudentById($student_no){
+		$query = "SELECT * FROM student WHERE student_no='$student_no'";
+		$con  = $this->connect();
+		$res = mysqli_query($con, $query);
+		if(mysqli_num_rows($res) > 0){			
+			$rows = array();
+			while($row = mysqli_fetch_array($res,MYSQLI_ASSOC)){
+				$rows[] = $row;
+			}
+			return $rows;
+		}
+		else{
+			return false;
+		}
+		$this->close();
+	}
+	
 	public function addStudent($student_no, $email, $password, $reg_id, $course, $status){
 		$query = "INSERT INTO student(student_no, student_email, password, reg_id, course, status, first_name, last_name) "
 				 +"VALUES('$student_no','$email','$password','$reg_id','$course', '$status', null, null)";
@@ -92,6 +109,24 @@ class DbStudent{
 		$con = $this->connect();
 		if(mysqli_query($con, $query)){
 			return true;
+		}else{
+			return false;
+		}
+		
+		$this->close();
+		
+	}
+	
+	public function updateProfile($student_no,$firstName, $lastName){
+		$query = "UPDATE student SET first_name = '$firstName', last_name = '$lastName' WHERE student_no = '$student_no'";
+		$con = $this->connect();
+		if(mysqli_query($con, $query)){
+			$res = mysqli_query($con, "SELECT * FROM student WHERE student_no = '$student_no'");
+			$rows = array();
+			while($row = mysqli_fetch_array($res,MYSQLI_ASSOC)){
+				$rows[] = $row;
+			}
+			return $rows;
 		}else{
 			return false;
 		}
