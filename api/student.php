@@ -35,15 +35,31 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 		if($res != false){
 			if($db-> addDevices($student_no, $device_id)){	
 			}
-				$res["error"] = FALSE;		
-				echo json_encode($res);			
+			$stat = $db->updateStatus($student_no,$status);
+			if($stat){
+				$res["error"] = FALSE;
+				$res["error_msg"] = "Student status updated";				
+				echo json_encode($res);	;
+			}else{
+				$res["error"] = TRUE;
+				$res["error_msg"] = "Student status Not updated";
+				echo json_encode($res);
+			}	
 		}else{
 			$res = $db->getStudent($student_no,$password);		
 			if($res != false){
 				if($db-> addDevices($student_no, $device_id)){
 				}
-				$res["error"] = FALSE;					
-				echo json_encode($res);				
+				$stat = $db->updateStatus($student_no,$status);
+				if($stat){
+					$res["error"] = FALSE;
+					$res["error_msg"] = "Student status updated";				
+					echo json_encode($res);	;
+				}else{
+					$res["error"] = TRUE;
+					$res["error_msg"] = "Student status Not updated";
+					echo json_encode($res);
+				}				
 			}
 			else{
 				$res["error"] = TRUE;
@@ -55,8 +71,8 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 	else if($tag == "updateStatus"){
 		$student_no = $_POST['student_no'];
 		$status = $_POST['status'];
-		$res = $db->updateStatus($student_no,$status);
-		if($res){
+		$stat = $db->updateStatus($student_no,$status);
+		if($stat){
 			$res["error"] = FALSE;
 			$res["error_msg"] = "Student status updated";
 			echo json_encode($res);
@@ -92,15 +108,32 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 		if($res != false){
 			if($db-> addDevices($student_no, $device_id)){	
 			}
-				$res["error"] = FALSE;		
-				echo json_encode($res);			
+			$stat = $db->updateStatus($student_no,$status);
+			if($stat){
+				$res["error"] = FALSE;
+				$res["error_msg"] = "Student status updated";				
+				echo json_encode($res);	;
+			}else{
+				$res["error"] = TRUE;
+				$res["error_msg"] = "Student status Not updated";
+				echo json_encode($res);
+			}		
 		}else{
 			$res = $db->getStudent($student_no,$password);		
 			if($res != false){
 				if($db-> addDevices($student_no, $device_id)){
 				}
-				$res["error"] = FALSE;					
-				echo json_encode($res);				
+				
+				$stat = $db->updateStatus($student_no,$status);
+				if($stat){
+					$res["error"] = FALSE;
+					$res["error_msg"] = "Student status updated";				
+					echo json_encode($res);	;
+				}else{
+					$res["error"] = TRUE;
+					$res["error_msg"] = "Student status Not updated";
+					echo json_encode($res);
+				}
 			}
 			else{
 				$res["error"] = TRUE;
@@ -112,8 +145,8 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 	else if($tag == "updateStatus"){
 		$student_no = $_POST['student_no'];
 		$status = $_POST['status'];
-		$res = $db->updateStatus($student_no,$status);
-		if($res){
+		$stat = $db->updateStatus($student_no,$status);
+		if($stat){
 			$res["error"] = FALSE;
 			$res["error_msg"] = "Student status updated";
 			echo json_encode($res);
