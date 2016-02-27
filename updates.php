@@ -11,7 +11,7 @@
         <div class="mdl-card__supporting-text">
             <div class="mdl-grid">
         		<div class="mdl-cell mdl-cell--8-col">
-		            <input type="hidden" name="tag" value="news"  >
+		            <input type="hidden" name="tag" value="update"  >
         			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="title" name="title">
                         <label class="mdl-textfield__label" for="title">Title...</label>
