@@ -3,6 +3,7 @@ header('Access-Control-Allow-Origin: *');
 require_once 'Functions.php';
 require_once 'DbStudent.php';
 require_once 'GCM.php';
+require_once 'Config.php';
 
 /* header( "Location:http://itrackerapp.gear.host/ncigo/manager/" ); */
 if (isset($_POST['tag']) && $_POST['tag'] != '') {
@@ -25,10 +26,9 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 			}
 			
 			$result = $db->addUpdate($title, $body, $target);
-			
-			$apiKey = "AIzaSyAYN-FIHqQV6_mYC8b4-yv7pBBr8az4VnA";			
+						
 			$message = "New Update";
-			$gcpm = new GCMPushMessage($apiKey);
+			$gcpm = new GCMPushMessage(gcmkey);
 			$gcpm->setDevices($devices);
 			if($result){
 				$response = $gcpm->send($message, $result[0]);			

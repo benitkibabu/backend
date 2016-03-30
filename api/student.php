@@ -3,6 +3,9 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Max-Age: 86400');
+
+require_once 'DbStudent.php';
+
 // Access-Control headers are received during OPTIONS requests
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
@@ -17,7 +20,7 @@ exit(0);
 }    
 
 if (isset($_POST['tag']) && $_POST['tag'] != '') {
-	require_once 'DbStudent.php';
+
 	$db = new DbStudent();
 	
 	$tag  = $_POST['tag'];	
@@ -112,7 +115,7 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 	$res  = array("tag" => $tag, "error" => FALSE);
 	
 	if($tag == "student"){
-		$student_no = $_POST['student_no'];
+		$student_no = $_GET['student_no'];
 		$email = $_GET['email'];
 		$password = $_GET['password'];
 		$device_id = $_GET['reg_id']; 

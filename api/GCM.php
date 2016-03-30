@@ -11,7 +11,8 @@
 	$apiKey Your GCM api key
 	$devices An array or string of registered device tokens
 	$message The mesasge you want to push out
-	@author Matt Grundy
+	@credit author Matt Grundy
+	@created by Benit Kibabu
 	Adapted from the code available at:
 	http://stackoverflow.com/questions/11242743/gcm-with-php-google-cloud-messaging
 */
