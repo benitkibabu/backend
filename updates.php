@@ -31,7 +31,7 @@
         		<div class="mdl-cell mdl-cell--6-col">
         		   
     				<div class="col-sm-10">
-    					<select  name="type" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    					<select  name="from" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
     						<option value="NCI">NCI</option>
     						<option value="NCI CAREER">NCI CAREER</option>
     						<option value="COMPUTING SUPPORT">COMPUTING SUPPORT</option>

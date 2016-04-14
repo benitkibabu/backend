@@ -17,6 +17,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 		$title = $_POST['title'];
 		$body  = $_POST['body'];
 		$target  = $_POST['target'];
+		$from = $_POST['from'];
 		
 		$list = $dbStudent->getDevices();		
 		if($list != false){
@@ -25,7 +26,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 				$devices[] = $device['device_id'];
 			}
 			
-			$result = $db->addUpdate($title, $body, $target);
+			$result = $db->addUpdate($title, $body, $target, $from);
 						
 			$message = "New Update";
 			$gcpm = new GCMPushMessage(gcmkey);

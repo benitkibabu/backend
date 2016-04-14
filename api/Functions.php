@@ -67,8 +67,8 @@ class DbUpdate{
 		/* $this->close(); */
 	}
 	
-	public function addUpdate($title, $body, $target){
-		$query = "INSERT INTO news(title, body, target, date) VALUES('$title', '$body', '$target', NOW())";
+	public function addUpdate($title, $body, $target, $from){
+		$query = "INSERT INTO news(title, body, target, date, from) VALUES('$title', '$body', '$target', NOW(), '$from')";
 		$con  = $this->connect();
 		$res = mysqli_query($con, $query);
 		if($res){
