@@ -1,6 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-require_once 'Functions.php';
+require_once 'DbUpdate.php';
 require_once 'DbStudent.php';
 require_once 'GCM.php';
 require_once 'Config.php';
@@ -17,7 +17,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 		$title = $_POST['title'];
 		$body  = $_POST['body'];
 		$target  = $_POST['target'];
-		$from = $_POST['from'];
+		$source = $_POST['source'];
 		
 		$list = $dbStudent->getDevices();		
 		if($list != false){
@@ -26,7 +26,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 				$devices[] = $device['device_id'];
 			}
 			
-			$result = $db->addUpdate($title, $body, $target, $from);
+			$result = $db->addUpdate($title, $body, $target, $source);
 						
 			$message = "New Update";
 			$gcpm = new GCMPushMessage(gcmkey);
@@ -35,6 +35,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
 				$response = $gcpm->send($message, $result[0]);			
 				echo json_encode($result[0]);
 			}else{
+				$result['error'] = TRUE;
 				echo json_encode($result);
 			}
 		}else{
@@ -70,7 +71,7 @@ else if(isset($_GET['tag']) && $_GET['tag'] != ''){
 		}
 		else{
 			$res["error"] = TRUE;
-			$res["error_msg"] = "No news found";
+			$res["error_msg"] = "No update found";
 			echo json_encode($res);
 		}
 	}

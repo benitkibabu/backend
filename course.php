@@ -37,7 +37,6 @@
         </div>
 	</form>
 	<div  id="result" class="mdl-cell mdl-cell--4-col container">
-
     </div>
 </div>
 

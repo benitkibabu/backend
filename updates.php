@@ -3,7 +3,7 @@
 <?php include('_drawer.php'); ?>
 
 <div class="container mdl-grid">
-	<form class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp" action="api/index.php" method="post">
+	<form class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp" action="api/index.php" method="POST">
 	    <div class="mdl-card__title">
             <h2 class="mdl-card__title-text"> UPDATES:</h2>
         </div>
@@ -26,17 +26,27 @@
         			</div>
     		    </div>
 		    </div>
+		     <div class="mdl-grid">
+        		<div class="mdl-cell mdl-cell--8-col">
+        			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="title" name="target">
+                        <label class="mdl-textfield__label" for="target">Target...</label>
+                    </div>
+    		    </div>
+		    </div>
 		    <div class="mdl-grid">
                 <label for="type" class="mdl-cell mdl-cell--2-col control-label">Type:</label>
         		<div class="mdl-cell mdl-cell--6-col">
         		   
     				<div class="col-sm-10">
-    					<select  name="from" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    					<select  name="source" class="">
     						<option value="NCI">NCI</option>
     						<option value="NCI CAREER">NCI CAREER</option>
     						<option value="COMPUTING SUPPORT">COMPUTING SUPPORT</option>
     						<option value="LEARNING SUPPORT">LEARNING SUPPORT</option>
     						<option value="STUDENT UNION">STUDENT UNION</option>
+    						<option value="NCI 360">NCI 360</option>
+    						<option value="NCI GO">NCI GO</option>
     					</select>
     				</div>
     		    </div>
