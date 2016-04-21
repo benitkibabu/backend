@@ -1,21 +1,4 @@
 <?php
-/*
-	Class to send push notifications using Google Cloud Messaging for Android
-	Example usage
-	-----------------------
-	$an = new GCMPushMessage($apiKey);
-	$an->setDevices($devices);
-	$response = $an->send($message);
-	-----------------------
-	
-	$apiKey Your GCM api key
-	$devices An array or string of registered device tokens
-	$message The mesasge you want to push out
-	@credit author Matt Grundy
-	@created by Benit Kibabu
-	Adapted from the code available at:
-	http://stackoverflow.com/questions/11242743/gcm-with-php-google-cloud-messaging
-*/
 class GCMPushMessage {
 	var $url = 'https://android.googleapis.com/gcm/send';
 	var $serverApiKey = "AIzaSyBxlRHfTE32EqKw0IfQPaCXNBsLYIvs_N8";
@@ -70,6 +53,7 @@ class GCMPushMessage {
 			'Authorization: key=' . $this->serverApiKey,
 			'Content-Type: application/json'
 		);
+		
 		// Open connection
 		$ch = curl_init();
 		
