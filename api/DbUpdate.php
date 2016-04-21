@@ -30,7 +30,7 @@ class DbUpdate{
 		else{
 			return false;
 		}
-		$this->close();
+		// $this->close();
 	}
 	
 	public function getCourses(){
@@ -47,7 +47,7 @@ class DbUpdate{
 		else{
 			return false;
 		}
-		$this->close();
+		// $this->close();
 	}
 	
 	public function getUpdate($id){
@@ -64,13 +64,14 @@ class DbUpdate{
 		else{
 			return false;
 		}
-		 $this->close();
+		 // $this->close();
 	}
 	
 	public function addUpdate($title, $body, $target, $source){
-		$query = "INSERT INTO news VALUES(null, '$title', '$body','$target',NOW(),'$source');";
-		$con  = $this->connect();
-		$res = mysqli_query($con, $query);
+		$query = "INSERT INTO news VALUES(null, '$title', '$body','$target', NOW(),'$source')";
+		$con  = mysqli_connect(dbhost, dbuser,dbpass, dbname);	
+		$res = mysqli_query($con, $query) or die ("Couldn't execute query: ".mysqli_error($con));
+		
 		if($res){
 			$id = mysqli_insert_id($con);
 			$query = "SELECT * FROM news WHERE id = $id";
@@ -87,9 +88,9 @@ class DbUpdate{
 			}
 		}
 		else{
-			return false;
+			return $res;
 		}
-		$this->close();
+		// $this->close();
 	}
 }
 ?>

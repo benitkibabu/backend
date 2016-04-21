@@ -4,6 +4,7 @@
 
 <div class="container mdl-grid">
 	<form class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp" action="api/index.php" method="POST">
+		<input type="hidden" name="tag" value="update"  >
 	    <div class="mdl-card__title">
             <h2 class="mdl-card__title-text"> UPDATES:</h2>
         </div>
@@ -11,7 +12,7 @@
         <div class="mdl-card__supporting-text">
             <div class="mdl-grid">
         		<div class="mdl-cell mdl-cell--8-col">
-		            <input type="hidden" name="tag" value="update"  >
+		            
         			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="title" name="title">
                         <label class="mdl-textfield__label" for="title">Title...</label>
@@ -29,7 +30,7 @@
 		     <div class="mdl-grid">
         		<div class="mdl-cell mdl-cell--8-col">
         			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="title" name="target">
+                        <input class="mdl-textfield__input" type="text" id="target" name="target">
                         <label class="mdl-textfield__label" for="target">Target...</label>
                     </div>
     		    </div>
