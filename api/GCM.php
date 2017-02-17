@@ -1,6 +1,7 @@
 <?php
 class GCMPushMessage {
-	var $url = 'https://android.googleapis.com/gcm/send';
+	//var $url = 'https://android.googleapis.com/gcm/send';
+	var $url = 'https://gcm-http.googleapis.com/gcm/send';
 	var $serverApiKey = "AIzaSyBxlRHfTE32EqKw0IfQPaCXNBsLYIvs_N8";
 	var $devices = array();
 	
